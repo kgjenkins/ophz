@@ -2,6 +2,9 @@
   <Metadata>
     <MDI key="DataType">Generic</MDI>
   </Metadata>
+  <Metadata domain="Esri">
+    <MDI key="PyramidResamplingType">NEAREST</MDI>
+  </Metadata>
   <PAMRasterBand band="1">
     <Histograms>
       <HistItem>
