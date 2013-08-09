@@ -6,7 +6,7 @@
   <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
   <link href='http://yui.yahooapis.com/pure/0.2.1/buttons-min.css rel='stylesheet' />'
   <!--[if lte IE 8]>
-    <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
   <![endif]-->
   <style>
     body { margin:0; padding:0; }
@@ -67,17 +67,64 @@
     #map-ui li:first-child a.active {
         border-top-color: #3887BE;
     }
+  
   </style>
 <div id='map'>
   <div id='map-ui'>
     <ul>
       <li><a class="pure-button pure-button-primary" href="https://github.com/wboykinm/ophz/tree/master/ophz-b/ophz-b-wgs84" target="_blank">Download Zones (~70MB)</a></li>
+      <li><a class="pure-button pure-button-primary" href='#' id='geolocate'>Find me</a></li>
     </ul>
   </div>
 </div>
+
 <script type='text/javascript'>
 L.mapbox.map('map', 'landplanner.map-7d8eg3wy,landplanner.map-73h9vsq0', {maxZoom:9,minZoom:4})
   .addControl(L.mapbox.geocoderControl('landplanner.map-7d8eg3wy,landplanner.map-73h9vsq0'));
+
+var geolocate = document.getElementById('geolocate');
+
+// This uses the HTML5 geolocation API, which is available on
+// most mobile browsers and modern browsers, but not in Internet Explorer
+//
+// See this chart of compatibility for details:
+// http://caniuse.com/#feat=geolocation
+if (!navigator.geolocation) {
+    geolocate.innerHTML = 'geolocation is not available';
+} else {
+    geolocate.onclick = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        map.locate();
+    };
+}
+
+// Once we've got a position, zoom and center the map
+// on it, and add a single marker.
+map.on('locationfound', function(e) {
+    map.fitBounds(e.bounds);
+
+    map.markerLayer.setGeoJSON({
+        type: "Feature",
+        geometry: {
+            type: "Point",
+            coordinates: [e.latlng.lng, e.latlng.lat]
+        },
+        properties: {
+            'marker-color': '#000',
+            'marker-symbol': 'star-stroked'
+        }
+    });
+
+    // And hide the geolocation button
+    geolocate.parentNode.removeChild(geolocate);
+});
+
+// If the user chooses not to allow their location
+// to be shared, display an error message.
+map.on('locationerror', function() {
+    geolocate.innerHTML = 'position could not be found';
+});
 </script>
 </body>
 </html>
