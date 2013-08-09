@@ -4,6 +4,7 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
   <script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
   <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+  <link href='http://yui.yahooapis.com/pure/0.2.1/buttons-min.css rel='stylesheet' />'
   <!--[if lte IE 8]>
     <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
   <![endif]-->
@@ -13,11 +14,70 @@
   </style>
 </head>
 <body>
-<div id='map'></div>
+  <style>
+    #map-ui {
+        position: absolute;
+        top: 120px;
+        left: 10px;
+        z-index: 100;
+    }
+
+    #map-ui ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    #map-ui a {
+        font-size: 13px;
+        background: #0000FF;
+        color: #fff;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 1px solid #BBB;
+        border-bottom-width: 0;
+        min-width: 138px;
+        padding: 10px;
+        text-decoration: none;
+    }
+
+    #map-ui a:hover {
+        background: #ECF5FA;
+        color:#333;
+    }
+
+    #map-ui li:last-child a {
+        border-bottom-width: 1px;
+        -webkit-border-radius: 0 0 3px 3px;
+        border-radius: 0 0 3px 3px;
+    }
+
+    #map-ui li:first-child a {
+        -webkit-border-radius: 3px 3px 0 0;
+        border-radius: 3px 3px 0 0;
+    }
+
+    #map-ui a.active {
+        background: #3887BE;
+        border-color: #3887BE;
+        border-top-color: #FFF;
+        color: #FFF;
+    }
+
+    #map-ui li:first-child a.active {
+        border-top-color: #3887BE;
+    }
+  </style>
+<div id='map'>
+  <div id='map-ui'>
+    <ul>
+      <li><a class="pure-button pure-button-primary" href="https://github.com/wboykinm/ophz/tree/master/ophz-b/ophz-b-wgs84" target="_blank">Download Zones (~70MB)</a></li>
+    </ul>
+  </div>
+</div>
 <script type='text/javascript'>
 L.mapbox.map('map', 'landplanner.map-7d8eg3wy,landplanner.map-73h9vsq0', {maxZoom:9,minZoom:4})
-	.addControl(L.mapbox.geocoderControl('landplanner.map-7d8eg3wy,landplanner.map-73h9vsq0'));
-map.gridControl.options.follow = true;
+  .addControl(L.mapbox.geocoderControl('landplanner.map-7d8eg3wy,landplanner.map-73h9vsq0'));
 </script>
 </body>
 </html>
