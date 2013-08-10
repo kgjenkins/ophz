@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-  <script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
   <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
-  <link href='http://yui.yahooapis.com/pure/0.2.1/buttons-min.css rel='stylesheet' />'
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <!--[if lte IE 8]>
-    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' />
   <![endif]-->
   <style>
     body { margin:0; padding:0; }
@@ -16,71 +16,126 @@
 <body>
   <style>
     #map-ui {
-        position: absolute;
-        top: 120px;
-        left: 10px;
-        z-index: 100;
+      position: absolute;
+      top: 120px;
+      left: 10px;
+      width:220px;
+      z-index: 100;
     }
-
-    #map-ui ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+    #footer {
+      position:absolute;
+      bottom:0px;
+      left:0px;
+      right:0px;
+      background:#3A7CC2;
+      z-index:999;
+      overflow:auto;
+      color:#fff;
+      padding:5px;
+      opacity:0.95;
     }
-    #map-ui a {
-        font-size: 13px;
-        background: #0000FF;
-        color: #fff;
-        display: block;
-        margin: 0;
-        padding: 0;
-        border: 1px solid #BBB;
-        border-bottom-width: 0;
-        min-width: 138px;
-        padding: 10px;
-        text-decoration: none;
+    ul.inline > li, ol.inline > li {
+      display: inline-block;
+      padding-right: 5px;
+      padding-left: 5px;
     }
-
-    #map-ui a:hover {
-        background: #ECF5FA;
-        color:#333;
-    }
-
-    #map-ui li:last-child a {
-        border-bottom-width: 1px;
-        -webkit-border-radius: 0 0 3px 3px;
-        border-radius: 0 0 3px 3px;
-    }
-
-    #map-ui li:first-child a {
-        -webkit-border-radius: 3px 3px 0 0;
-        border-radius: 3px 3px 0 0;
-    }
-
-    #map-ui a.active {
-        background: #3887BE;
-        border-color: #3887BE;
-        border-top-color: #FFF;
-        color: #FFF;
-    }
-
-    #map-ui li:first-child a.active {
-        border-top-color: #3887BE;
-    }
-  
+    .leaflet-bottom .leaflet-right {height:75px;bottom:0px;}
+    .leaflet-bottom .leaflet-control {margin-bottom: 0;}
   </style>
 <div id='map'>
   <div id='map-ui'>
-    <ul>
-      <li><a class="pure-button pure-button-primary" href="https://github.com/wboykinm/ophz/tree/master/ophz-b/ophz-b-wgs84" target="_blank">Download Zones (~70MB)</a></li>
-      <li><a class="pure-button pure-button-primary" href='#' id='geolocate'>Find me</a></li>
-    </ul>
+    <div class="btn-group-vertical">
+      <a style="color:#fff;" class="btn btn-primary" href="https://github.com/wboykinm/ophz/tree/master/ophz-b/ophz-b-wgs84" target="_blank"><i class="icon-download"></i> Download Zones (~70MB)</a></li>
+      <a style="color:#fff;" class="btn btn-primary" href='#' id='geolocate'><i class="icon-map-marker"></i> What zone am I in?</a></li>
+    </div>
+  </div>
+</div>
+<div id='footer'>
+  <div class="container">
+    <ul class="inline">
+          <li><h2 class="switch-title"><i class="icon-leaf"></i> Open Plant Hardiness Zones</h2></li>
+          <li>
+
+          <div id='legend-content' style='display: none;'>
+            <div class='my-legend'>
+            <div class='legend-title'>Zones</div>
+            <div class='legend-scale'>
+              <ul class='legend-labels'>
+                <li><span style='background:#313695;'></span>3a</li>
+                <li><span style='background:#4575B4;'></span>3b</li>
+                <li><span style='background:#5F8FCE;'></span>4a</li>
+                <li><span style='background:#74ADD1;'></span>4b</li>
+                <li><span style='background:#ABD9E9;'></span>5a</li>
+                <li><span style='background:#E0F3F8;'></span>5b</li>
+                <li><span style='background:#FFFFBF;'></span>6a</li>
+                <li><span style='background:#FFFAAA;'></span>6b</li>
+                <li><span style='background:#FEE090;'></span>7a</li>
+                <li><span style='background:#FFC87B;'></span>7b</li>
+                <li><span style='background:#FDAE61;'></span>8a</li>
+                <li><span style='background:#FF875D;'></span>8b</li>
+                <li><span style='background:#F46D43;'></span>9a</li>
+                <li><span style='background:#D73027;'></span>9b</li>
+                <li><span style='background:#A50026;'></span>10a</li>
+                <li><span style='background:#D73027;'></span>10b</li>
+                <li><span style='background:#BE170E;'></span>11a</li>
+                <li><span style='background:#A50026;'></span>11b</li>
+                <li><span style='background:#ffffff;'></span>H2O</li>
+              </ul>
+            </div>
+            <!--<div class='legend-source'>Source: <a href="http://planthardiness.ars.usda.gov/PHZMWeb/" target="_blank">USDA/OSU</a></div>
+            </div>-->
+
+            <style type='text/css'>
+              .my-legend .legend-title {
+                text-align: left;
+                font-weight: bold;
+                font-size: 90%;
+                }
+              .my-legend .legend-scale ul {
+                margin: 0;
+                padding: 0;
+                float: left;
+                list-style: none;
+                }
+              .my-legend .legend-scale ul li {
+                display: block;
+                float: left;
+                width: 30px;
+                margin-bottom: 6px;
+                text-align: center;
+                font-size: 80%;
+                list-style: none;
+                }
+              .my-legend ul.legend-labels li span {
+                display: block;
+                float: left;
+                height: 15px;
+                width: 30px;
+                }
+              .my-legend .legend-source {
+                font-size: 70%;
+                color: #999;
+                clear: both;
+                }
+              .my-legend a {
+                color: #777;
+                }
+            </style>
+          </div>
+          </li>
+
+
+        </ul>  
   </div>
 </div>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
 <script type='text/javascript'>
-L.mapbox.map('map', 'landplanner.map-7d8eg3wy,landplanner.map-73h9vsq0', {maxZoom:9,minZoom:4})
+var map = L.mapbox.map('map', 'landplanner.map-7d8eg3wy,landplanner.map-73h9vsq0', {maxZoom:9,minZoom:4})
   .addControl(L.mapbox.geocoderControl('landplanner.map-7d8eg3wy,landplanner.map-73h9vsq0'));
+map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
 
 var geolocate = document.getElementById('geolocate');
 
