@@ -1,6 +1,8 @@
 Open Plant Hardiness Zones (OPHZ)
 ===
 
+_OPHZ-C is the most-current flavor - it is recommended you start there_
+
 OPHZ is free and open raster data derived from the public domain map images available at:
     http://planthardiness.ars.usda.gov/
 
@@ -13,6 +15,6 @@ The data will be made available in different flavors, each representing a differ
 
 * **OPHZ-B** is identical to OPHZ-A, except that international borders and coastlines have been filled with the nearest data values.  This is particularly useful for regions such as the lovely crinkly edges of Maine.
 
-* **OPHZ-C** (in progress) aims to fill larger gaps of open water (-99), especially where there may be small islands that were not visible in PHZM-US48.
+* **OPHZ-C** Fills riverways and splits the dataset by state, though the CONUS full dataset is available here as well. All subsets here are in WGS84
 
 
