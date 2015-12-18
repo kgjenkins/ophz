@@ -3,23 +3,20 @@ Open Plant Hardiness Zones (OPHZ)
 
 ![ophz](ophz.png)
 
-_OPHZ-C is the most-current flavor - it is recommended you start there_
-
-## Data overview
-
 OPHZ is free and open raster and vector data derived from the public domain map images available at:
     http://planthardiness.ars.usda.gov/
 
-The data is available in different flavors, each representing a different level of processing.
+In the [original public domain map](http://planthardiness.ars.usda.gov/PHZMWeb/Images/All_states_halfzones_poster_rgb_300dpi.pdf), there are some gaps due to rivers, borders, and coastlines.  Many of these gaps have been filled with the nearest values.
 
-* **PHZM-US48** is the original PDF (in an Albers Conical Equal Area projection), downloaded from
-    http://planthardiness.ars.usda.gov/PHZMWeb/Images/All_states_halfzones_poster_rgb_300dpi.pdf
+OPHZ is available in the following formats:
 
-* **OPHZ-A** is a raster of data values, where each colored pixel of PHZM-US48 has been translated to a value representing lower end of each zone's temperature range.  Labels, state boundaries, and the elevation hillshade have been removed, although international borders, coastlines, and a few major rivers appear as -98.  Open water is -99.  This raster is currently limited to the 48 contiguous US states (US48).
+* **shp/ophz.shp** - polygon shapefile, in WGS84 coordinates
 
-* **OPHZ-B** is identical to OPHZ-A, except that international borders and coastlines have been filled with the nearest data values.  This is particularly useful for regions such as the lovely crinkly edges of Maine.
+* **geojson/\*.geojson** - polygon geojson, in WGS84 coordinates, separate files for each state
 
-* **OPHZ-C** Fills riverways and splits the dataset by state, though the CONUS full dataset is available here as well. All subsets here are in WGS84
+* **tif/ophz-us48.tif** - GeoTIFF raster covering the 48 contiguous US states, in Albers projection (EPSG:5070).  Each colored pixel of the original map image has been translated to a value representing lower end of each zone's temperature range.
+
+* **tif/ophz-alpha-us48.tif** -- original "alpha" version of the OPHZ raster, before any filling of pixels where zone data was missing due to rivers, borders, or coastlines.  International borders, coastlines, and a few major rivers appear as -98.  Open water is -99.
 
 ## Rendered map
 Using d3js, [viewable here](http://wboykinm.github.io/ophz/map/).
