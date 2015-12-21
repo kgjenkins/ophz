@@ -3,7 +3,7 @@ Open Plant Hardiness Zones (OPHZ)
 
 OPHZ is free and open raster and vector data derived from the public domain map images available at http://planthardiness.ars.usda.gov/
 
-In the [original public domain PDF map](http://planthardiness.ars.usda.gov/PHZMWeb/Images/All_states_halfzones_poster_rgb_300dpi.pdf), there are some gaps due to rivers, borders, and coastlines.  Most of these gaps have been filled with the nearest values.
+In the [original public domain PDF map](http://planthardiness.ars.usda.gov/PHZMWeb/Images/All_states_halfzones_poster_rgb_300dpi.pdf) (305MB!), there are some gaps due to rivers, borders, and coastlines.  Most of these gaps have been filled with the nearest values.
 
 OPHZ currently covers the 48 contiguous US states (US48), and is available in the following formats:
 * **shp/ophz.shp** - national polygon shapefile
