@@ -15,5 +15,7 @@ OPHZ currently covers the 48 contiguous US states (US48), and is available in th
 
 All vector formats are in WGS84 (EPSG:4326), and the raster formats are in the original Albers projection (EPSG:5070).
 
+[Download OPHZ v0.2](https://github.com/kgjenkins/ophz/archive/v0.2.zip)
+
 ![ophz](ophz.png)
 
