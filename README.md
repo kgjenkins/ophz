@@ -3,15 +3,16 @@ Open Plant Hardiness Zones (OPHZ)
 
 OPHZ is free and open raster and vector data derived from the public domain map images available at http://planthardiness.ars.usda.gov/
 
-In the [original public domain PDF map](http://planthardiness.ars.usda.gov/PHZMWeb/Images/All_states_halfzones_poster_rgb_300dpi.pdf), there are some gaps due to rivers, borders, and coastlines.  Many of these gaps have been filled with the nearest values.
+In the [original public domain PDF map](http://planthardiness.ars.usda.gov/PHZMWeb/Images/All_states_halfzones_poster_rgb_300dpi.pdf), there are some gaps due to rivers, borders, and coastlines.  Most of these gaps have been filled with the nearest values.
 
-OPHZ is available in the following formats:
-* **shp/ophz.shp** - polygon shapefile, in WGS84 coordinates
-* **geojson/\*.geojson** - polygon geojson, in WGS84 coordinates, separate files for each state
-* **tif/ophz-us48.tif** - GeoTIFF raster covering the 48 contiguous US states, in Albers projection (EPSG:5070).  Each colored pixel of the original map image has been translated to a value representing lower end of each zone's temperature range.  Many gaps have been filled with the nearest data value.
+OPHZ currently covers the 48 contiguous US states (US48), and is available in the following formats:
+* **shp/ophz.shp** - national polygon shapefile
+* **geojson/\*.geojson** - polygon geojson files (one for each state)
+* **topojson/\*.topojson** - national topojson file
+* **tif/ophz-us48.tif** - geotiff raster.  Each colored pixel of the original map image has been translated to a value representing lower end of the corresponding zone's temperature range.  Most gaps have been filled with the nearest data value.
 * **tif/ophz-alpha-us48.tif** - for those who want the original, unfilled raster with no interpolation of nodata values.  International borders, coastlines, and a few major rivers appear as -98.  Open water is -99.
+
+All vector formats are in WGS84 (EPSG:4326), and the raster formats are in the original Albers projection (EPSG:5070).
 
 ![ophz](ophz.png)
 
-## Rendered map
-Using d3js, [viewable here](http://wboykinm.github.io/ophz/map/).
