@@ -1,6 +1,8 @@
 Open Plant Hardiness Zones (OPHZ)
 ===
 
+**UPDATE: As of April 2017, the official PHZ data is no longer behind a paywall.  Grids, shapefiles, and zipcode listings are now downloadable directly from the [PRISM Climate Group](http://prism.oregonstate.edu/projects/plant_hardiness_zones.php).  However, the OPHZ data available here, at approximately 450m pixel resolution, is higher resolution than the 800m pixel grids available at that site.**
+
 OPHZ is free and open raster and vector data derived from the public domain map images available at http://planthardiness.ars.usda.gov/
 
 In the [original public domain PDF map](http://planthardiness.ars.usda.gov/PHZMWeb/Images/All_states_halfzones_poster_rgb_300dpi.pdf) (305MB!), there are some gaps due to rivers, borders, and coastlines.  OPHZ fills most of these gaps with the nearest values.
